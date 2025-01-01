@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CarsController;
+use App\Http\Controllers\RentalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,6 +33,28 @@ Route::middleware(['auth','role:admin'])->group(function () {
         'edit'    => 'admin.UserManagement.edit',
         'update'  => 'admin.UserManagement.update',
         'destroy' => 'admin.UserManagement.destroy',
+    ]);
+
+    // Car Management
+    Route::resource('/admin/CarManagement', CarsController::class)->names([
+        'index'   => 'admin.CarManagement.index',
+        'create'  => 'admin.CarManagement.create',
+        'store'   => 'admin.CarManagement.store',
+        'show'    => 'admin.CarManagement.show',
+        'edit'    => 'admin.CarManagement.edit',
+        'update'  => 'admin.CarManagement.update',
+        'destroy' => 'admin.CarManagement.destroy',
+    ]);
+
+    // Rental Management
+    Route::resource('/admin/RentalManagement', RentalController::class)->names([
+        'index'   => 'admin.RentalManagement.index',
+        'create'  => 'admin.RentalManagement.create',
+        'store'   => 'admin.RentalManagement.store',
+        'show'    => 'admin.RentalManagement.show',
+        'edit'    => 'admin.RentalManagement.edit',
+        'update'  => 'admin.RentalManagement.update',
+        'destroy' => 'admin.RentalManagement.destroy',
     ]);
 
 });

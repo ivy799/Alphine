@@ -12,7 +12,7 @@ class CarsController extends Controller
      */
     public function index()
     {
-        //
+        return view('main.admin.CarManagement.index');
     }
 
     /**

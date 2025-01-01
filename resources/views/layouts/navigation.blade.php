@@ -14,10 +14,16 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(Auth::user()->role == 'admin')
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('admin.dashboard')">
-                            <span class="text-blue-600 hover:text-blue-800">{{ __('Admin Dashboard') }}</span>
+                            <span class="text-blue-600 hover:text-blue-800">{{ __('Dashboard') }}</span>
                         </x-nav-link>
                         <x-nav-link :href="route('admin.UserManagement.index')" :active="request()->routeIs('admin.UserManagement.index')">
                             <span class="text-blue-600 hover:text-blue-800">{{ __('User Management') }}</span>
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.CarManagement.index')" :active="request()->routeIs('admin.CarManagement.index')">
+                            <span class="text-blue-600 hover:text-blue-800">{{ __('Car Management') }}</span>
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.RentalManagement.index')" :active="request()->routeIs('admin.RentalManagement.index')">
+                            <span class="text-blue-600 hover:text-blue-800">{{ __('Rental Management') }}</span>
                         </x-nav-link>
                     @else
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
