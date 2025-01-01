@@ -29,12 +29,6 @@
                                 <strong>Email:</strong> {{ $user->email }}
                             </p>
                             <p class="text-light-700 dark:text-light-300 text-sm">
-                                <strong>Address:</strong> {{ $user->address }}
-                            </p>
-                            <p class="text-light-700 dark:text-light-300 text-sm">
-                                <strong>Phone:</strong> {{ $user->phone_number }}
-                            </p>
-                            <p class="text-light-700 dark:text-light-300 text-sm">
                                 <strong>Role:</strong> {{ $user->role }}
                             </p>
                             <div class="flex items-center mt-4 space-x-4">

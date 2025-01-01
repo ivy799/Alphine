@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class UserController extends Controller
@@ -74,6 +76,12 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if (Auth::user()->id !== $user->id) {
+            $user->delete();
+        }
+
+        return redirect()->route('admin.UserManagement.index');
     }
 }
