@@ -12,9 +12,18 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        <span class="text-blue-600 hover:text-blue-800">{{ __('Dashboard') }}</span>
-                    </x-nav-link>
+                    @if(Auth::user()->role == 'admin')
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('admin.dashboard')">
+                            <span class="text-blue-600 hover:text-blue-800">{{ __('Admin Dashboard') }}</span>
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.UserManagement.index')" :active="request()->routeIs('admin.UserManagement.index')">
+                            <span class="text-blue-600 hover:text-blue-800">{{ __('User Management') }}</span>
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            <span class="text-blue-600 hover:text-blue-800">{{ __('Dashboard') }}</span>
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
