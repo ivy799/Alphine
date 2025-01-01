@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white light:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 light:text-gray-100">
-                    <form method="POST" action="{{ route('admin.users.update', $user->id) }}">
+                    <form method="POST" action="{{ route('admin.UserManagement.update', $user->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="grid grid-cols-1 gap-6 mt-4">
@@ -43,27 +43,6 @@
                                 @enderror
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 light:text-gray-300">Address</label>
-                                <input type="text" name="address" value="{{ old('address', $user->address) }}" class="mt-1 block w-full text-black" required>
-                                @error('address')
-                                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 light:text-gray-300">Address</label>
-                                <input type="text" name="address" value="{{ old('address', $user->address) }}" class="mt-1 block w-full text-black" required>
-                                @error('address')
-                                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 light:text-gray-300">Phone number</label>
-                                <input type="text" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}" class="mt-1 block w-full text-black" required>
-                                @error('phone_number')
-                                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
                         </div>
                         <div class="mt-4">
                             <button type="submit" class="px-4 py-2 bg-black text-white hover:bg-white hover:text-black rounded">Update User</button>

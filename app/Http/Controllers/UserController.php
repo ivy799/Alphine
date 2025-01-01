@@ -44,7 +44,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('admin.UserManagement.create');
+        return redirect()->route('admin.UserManagement.index');
     }
 
     /**
@@ -60,7 +60,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('main.admin.UserManagement.edit', compact('user'));
     }
 
     /**
@@ -68,7 +69,24 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        if ($request->password) {
+            $request->validate(['password' => 'string|min:8']);
+            $user->update(['password' => Hash::make($request->password)]);
+        }
+
+        return redirect()->route('admin.UserManagement.index');
     }
 
     /**
