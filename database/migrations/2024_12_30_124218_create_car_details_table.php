@@ -10,10 +10,10 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {                                                                                                                                                                                                                                                                                                                                                                                                                                                          
         Schema::create('car_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('car_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('car_id')->constrained('cars')->cascadeOnDelete();
             $table->string('color');
             $table->string('image');
             $table->timestamps();

@@ -19,7 +19,7 @@
                         <x-nav-link :href="route('admin.UserManagement.index')" :active="request()->routeIs('admin.UserManagement.index')">
                             <span class="text-gray-300 hover:text-white">{{ __('User Management') }}</span>
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.CarManagement.index')" :active="request()->routeIs('admin.CarManagement.index')">
+                        <x-nav-link :href="route('admin.CarManagement.create')" :active="request()->routeIs('admin.CarManagement.create')">
                             <span class="text-gray-300 hover:text-white">{{ __('Car Management') }}</span>
                         </x-nav-link>
                         <x-nav-link :href="route('admin.RentalManagement.index')" :active="request()->routeIs('admin.RentalManagement.index')">
