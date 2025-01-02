@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('role', '!=', 'admin')->get();
-        return view('main.admin.UserManagement.index')->with('users', $users);
+        $usersCount = User::where('role', '!=', 'admin')->count();
+        return view('main.admin.UserManagement.index', compact('users', 'usersCount'));
     }
 
     /**
