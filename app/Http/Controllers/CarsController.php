@@ -52,17 +52,20 @@ class CarsController extends Controller
         $car->save();
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $image) {
+            foreach ($validatedData['colors'] as $index => $color) {
+            if (isset($validatedData['images'][$index])) {
+                $image = $validatedData['images'][$index];
                 $path = $image->store('images', 'public');
                 car_details::create([
-                    'car_id' => $car->id,
-                    'color' => $validatedData['colors'][$index],
-                    'image' => $path,
+                'car_id' => $car->id,
+                'color' => $color,
+                'image' => $path,
                 ]);
+            }
             }
         }
 
-        return redirect()->route('admin.CarManagement.index')->with('success', 'Car created successfully.');
+        return redirect()->route('admin.CarManagement.create')->with('success', 'Car created successfully.');
     }
 
     /**
