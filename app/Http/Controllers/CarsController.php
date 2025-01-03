@@ -51,18 +51,16 @@ class CarsController extends Controller
         $car->description = $validatedData['description'];
         $car->save();
 
-        if ($request->hasFile('images')) {
-            foreach ($validatedData['colors'] as $index => $color) {
-            if (isset($validatedData['images'][$index])) {
-                $image = $validatedData['images'][$index];
-                $path = $image->store('images', 'public');
-                car_details::create([
+        // melakukan loop berdasarkan jumlah warna, jika jumlah gambar dan warna tidak sesuai maka gambar akan diisi default image
+        foreach ($validatedData['colors'] as $index => $color) {
+            $image = $validatedData['images'][$index] ?? null;
+            $path = $image ? $image->store('images', 'public') : 'images/744465.png';
+    
+            car_details::create([
                 'car_id' => $car->id,
                 'color' => $color,
                 'image' => $path,
-                ]);
-            }
-            }
+            ]);
         }
 
         return redirect()->route('admin.CarManagement.create')->with('success', 'Car created successfully.');
