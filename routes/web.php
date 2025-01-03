@@ -61,4 +61,24 @@ Route::middleware(['auth','role:admin'])->group(function () {
 
 
 
+
+
+// User Route
+Route::middleware(['auth','role:user'])->group(function () {
+
+    // User Rental
+    Route::resource('/user/Rental', RentalController::class)->names([
+        'index'   => 'user.Rental.index',
+        'create'  => 'user.Rental.create',
+        'store'   => 'user.Rental.store',
+        'show'    => 'user.Rental.show',
+        'edit'    => 'user.Rental.edit',
+        'update'  => 'user.Rental.update',
+        'destroy' => 'user.Rental.destroy',
+    ]);
+
+});
+
+
+
 require __DIR__.'/auth.php';

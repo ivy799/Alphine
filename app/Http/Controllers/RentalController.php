@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\rental;
 use Illuminate\Http\Request;
+use App\Models\cars;
 
 class RentalController extends Controller
 {
@@ -11,16 +12,18 @@ class RentalController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('main.admin.RentalManagement.index');
+    {   
+        $cars = cars::with('car_details')->get();
+        return view('main.user.Rental.index', compact('cars'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $car = cars::findOrFail($request->car);
+        return view('main.user.Rental.create', compact('car'));
     }
 
     /**
@@ -28,7 +31,23 @@ class RentalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'car_id' => 'required|exists:cars,id',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'total_price' => 'required|numeric|min:0',
+        ]);
+
+        $rental = new rental();
+        $rental->user_id = auth()->id();
+        $rental->cars_id = $validatedData['car_id'];
+        $rental->start_date = $validatedData['start_date'];
+        $rental->end_date = $validatedData['end_date'];
+        $rental->total_price = $validatedData['total_price'];
+        $rental->status = 'pending';
+        $rental->save();
+
+        return redirect()->route('user.Rental.index')->with('success', 'Rental created successfully.');
     }
 
     /**

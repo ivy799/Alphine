@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class car_details extends Model
 {
     protected $fillable = [
-        'car_id', // Add this line
+        'car_id',
         'color',
         'image',
         'review',

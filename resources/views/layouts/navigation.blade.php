@@ -29,6 +29,9 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             <span class="text-gray-300 hover:text-white">{{ __('Dashboard') }}</span>
                         </x-nav-link>
+                        <x-nav-link :href="route('user.Rental.index')" :active="request()->routeIs('user.Rental.index')">
+                            <span class="text-gray-300 hover:text-white">{{ __('Rental') }}</span>
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
