@@ -13,7 +13,7 @@ class RentalController extends Controller
      */
     public function index()
     {   
-        $cars = cars::with('car_details')->get();
+        $cars = cars::all();
         return view('main.user.Rental.index', compact('cars'));
     }
 
