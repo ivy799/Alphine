@@ -8,10 +8,11 @@ class rental extends Model
 {
     protected $fillable = [
         'user_id',
-        'car_id',
-        'rental_date',
-        'return_date',
+        'cars_id',
+        'start_date',
+        'end_date',
         'total_price',
+        'status',
     ];
 
     public function user()
@@ -21,11 +22,6 @@ class rental extends Model
 
     public function car()
     {
-        return $this->belongsTo(cars::class);
-    }
-
-    public function payment()
-    {
-        return $this->hasOne(payment::class);
+        return $this->belongsTo(cars::class, 'cars_id');
     }
 }

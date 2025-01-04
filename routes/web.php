@@ -77,6 +77,8 @@ Route::middleware(['auth','role:user'])->group(function () {
         'destroy' => 'user.Rental.destroy',
     ]);
 
+    Route::get('/user/myRentals', [RentalController::class, 'myRentals'])->name('user.Rental.myRentals');
+
 });
 
 
