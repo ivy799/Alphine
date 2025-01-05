@@ -87,4 +87,16 @@ class RentalController extends Controller
         $rentals = rental::where('user_id', auth()->id())->with('car')->get();
         return view('main.user.Rental.myRentals', compact('rentals'));
     }
+
+    public function cancel(rental $rental)
+    {
+        if ($rental->user_id != auth()->id()) {
+            return redirect()->route('user.Rental.index')->with('error', 'You are not authorized to cancel this rental.');
+        }
+
+        $rental->status = 'canceled';
+        $rental->save();
+
+        return redirect()->route('user.Rental.myRentals')->with('success', 'Rental canceled successfully.');
+    }
 }

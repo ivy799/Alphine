@@ -27,6 +27,12 @@
                                      alt="{{ $rental->car->name }}" 
                                      class="w-full h-48 object-cover mt-4">
                             @endif
+                            <form method="POST" action="{{ route('user.Rental.cancel', $rental->id) }}">
+                                @csrf
+                                <button type="submit" class="mt-4 inline-block bg-red-500 text-white px-4 py-2 rounded">
+                                    Cancel Rental
+                                </button>
+                            </form>
                         </div>
                     @endforeach
                 </div>
