@@ -22,18 +22,18 @@
                         <x-nav-link :href="route('admin.CarManagement.create')" :active="request()->routeIs('admin.CarManagement.create')">
                             <span class="text-gray-300 hover:text-white">{{ __('Car Management') }}</span>
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.RentalManagement.index')" :active="request()->routeIs('admin.RentalManagement.index')">
+                        <x-nav-link :href="route('admin.RentalManagement.adminIndex')" :active="request()->routeIs('admin.RentalManagement.adminIndex')">
                             <span class="text-gray-300 hover:text-white">{{ __('Rental Management') }}</span>
                         </x-nav-link>
                     @else
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             <span class="text-gray-300 hover:text-white">{{ __('Dashboard') }}</span>
                         </x-nav-link>
-                        <x-nav-link :href="route('user.Rental.index')" :active="request()->routeIs('user.Rental.index')">
-                            <span class="text-gray-300 hover:text-white">{{ __('Rental') }}</span>
-                        </x-nav-link>
                         <x-nav-link :href="route('user.Rental.myRentals')" :active="request()->routeIs('user.Rental.myRentals')">
                             <span class="text-gray-300 hover:text-white">{{ __('MyRental') }}</span>
+                        </x-nav-link>
+                        <x-nav-link :href="route('user.Rental.index')" :active="request()->routeIs('user.Rental.index')">
+                            <span class="text-gray-300 hover:text-white">{{ __('Rental') }}</span>
                         </x-nav-link>
                     @endif
                 </div>

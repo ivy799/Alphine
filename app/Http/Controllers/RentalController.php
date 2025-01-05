@@ -17,6 +17,12 @@ class RentalController extends Controller
         return view('main.user.Rental.index', compact('cars'));
     }
 
+    public function adminIndex()
+    {
+        $rentals = rental::with('car')->get();
+        return view('main.admin.RentalManagement.index', compact('rentals'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -69,9 +75,17 @@ class RentalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, rental $rental)
+    public function update(Request $request, $id)
     {
-        //
+        $rental = rental::findOrFail($id);
+        $validatedData = $request->validate([
+            'status' => 'required|in:approved,rejected',
+        ]);
+
+        $rental->status = $validatedData['status'];
+        $rental->save();
+
+        return redirect()->route('admin.RentalManagement.adminIndex')->with('success', 'Rental status updated successfully.');
     }
 
     /**

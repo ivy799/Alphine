@@ -57,6 +57,8 @@ Route::middleware(['auth','role:admin'])->group(function () {
         'destroy' => 'admin.RentalManagement.destroy',
     ]);
 
+    Route::get('/admin/adminIndex', [RentalController::class, 'adminIndex'])->name('admin.RentalManagement.adminIndex');
+
 });
 
 
@@ -81,6 +83,7 @@ Route::middleware(['auth','role:user'])->group(function () {
 
     Route::get('/user/myRentals', [RentalController::class, 'myRentals'])->name('user.Rental.myRentals');
 
+    
 });
 
 
