@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
 
 // Main Route
+
 // Admin Route
 Route::middleware(['auth','role:admin'])->group(function () {
 
@@ -46,7 +47,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
         'destroy' => 'admin.CarManagement.destroy',
     ]);
 
-    // Rental Management
+    // Admin Rental Management
     Route::resource('/admin/RentalManagement', RentalController::class)->names([
         'index'   => 'admin.RentalManagement.index',
         'create'  => 'admin.RentalManagement.create',
@@ -80,7 +81,6 @@ Route::middleware(['auth','role:user'])->group(function () {
     ]);
 
     Route::post('/user/Rental/{rental}/cancel', [RentalController::class, 'cancel'])->name('user.Rental.cancel');
-
     Route::get('/user/myRentals', [RentalController::class, 'myRentals'])->name('user.Rental.myRentals');
 
     
